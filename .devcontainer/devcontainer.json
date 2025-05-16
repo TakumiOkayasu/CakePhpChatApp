@@ -1,0 +1,28 @@
+{
+	"name": "cakePHP Environment",
+	"dockerComposeFile": "compose.yaml",
+	"service": "cakephp",
+	"workspaceFolder": "/workspace",
+	"mounts": [
+		"source=${localWorkspaceFolder}/,target=/workspace,type=bind"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"eamodio.gitlens",
+				"pizzacat83.codic",
+				"xdebug.php-debug",
+				"DEVSENSE.phptools-vscode",
+				"junstyle.php-cs-fixer",
+				"DEVSENSE.composer-php-vscode",
+				"sourcegraph.cody-ai",
+				"openai.openai-chatgpt-adhoc",
+				"VisualStudioExptTeam.vscodeintellicode"
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash"
+			}
+		}
+	}
+}
+
