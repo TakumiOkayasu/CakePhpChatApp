@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-bullseye
+FROM php:8.3-fpm-bullseye
 
 # Ensure all packages are updated to the latest available versions to reduce vulnerabilities
 
