@@ -1,7 +1,5 @@
 FROM php:8.3-fpm-bullseye
 
-# Ensure all packages are updated to the latest available versions to reduce vulnerabilities
-
 ARG USER_NAME ${USER_NAME}
 ARG USER_UID  ${USER_UID}
 ARG USER_GID  ${USER_GID}
@@ -24,15 +22,14 @@ RUN apt update && apt upgrade -y && apt install -y --no-install-recommends \
     build-essential \
     ca-certificates \
     libicu-dev \
-    && curl -fsSL https://bun.sh/install | bash \ 
-    && mv /root/.bun/bin/bun /usr/local/bin/ \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && locale-gen ja_JP.UTF-8 \
     && localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
-    && docker-php-ext-install intl
+    && docker-php-ext-install intl \ 
+    && docker-php-ext-install pdo_mysql
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer \
