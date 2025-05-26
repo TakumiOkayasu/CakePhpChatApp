@@ -1,11 +1,15 @@
 CREATE SCHEMA IF NOT EXISTS ChatDB;
 USE `ChatDB`
 
+-- 既存のテーブルの削除
+
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS chats;
 DROP TABLE IF EXISTS chat_members;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS message_reads;
+
+-- テーブルの生成しなおし
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -43,3 +47,6 @@ CREATE TABLE message_reads (
   read_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (message_id, user_id)
 );
+
+-- とりあえずでユーザーを作っておく
+INSERT INTO users (username, email, password_hash) VALUES ('admin', 'admin@example.com', SHA2('password', 256));
