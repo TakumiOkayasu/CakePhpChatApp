@@ -296,7 +296,7 @@ return [
              */
             'flags' => [],
             'cacheMetadata' => true,
-            'log' => env('DEBUG', false),
+            'log' => false,
 
             /*
              * Set identifier quoting to true if you are using reserved words or
