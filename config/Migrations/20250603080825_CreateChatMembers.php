@@ -23,6 +23,5 @@ class CreateChatMembers extends BaseMigration
             ->addForeignKey('chat_id', 'chats', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->addForeignKey('user_id', 'users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->create();
-
     }
 }
