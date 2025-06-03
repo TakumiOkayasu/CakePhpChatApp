@@ -12,16 +12,21 @@ class CreateMessages extends BaseMigration
      * https://book.cakephp.org/migrations/4/en/migrations.html#the-change-method
      * @return void
      */
-    public function up(): void
+    public function change(): void
     {
         // messages テーブル
         $this->table('messages')
             ->addColumn('chat_id', 'integer')
-            ->addColumn('sender_id', 'integer')
+            ->addColumn('sender_id', 'integer', ['null' => true])
             ->addColumn('content', 'text')
             ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addForeignKey('chat_id', 'chats', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->addForeignKey('sender_id', 'users', 'id', ['delete' => 'SET NULL', 'update' => 'NO_ACTION'])
             ->create();
+    }
+
+    public function down(): void
+    {
+        $this->table('messages')->drop()->save();
     }
 }

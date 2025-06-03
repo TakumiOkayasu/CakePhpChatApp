@@ -12,16 +12,22 @@ class CreateChatMembers extends BaseMigration
      * https://book.cakephp.org/migrations/4/en/migrations.html#the-change-method
      * @return void
      */
-    public function up(): void
+    public function change(): void
     {
-        // chat_members テーブル（中間テーブル）
-        $this->table('chat_members')
+        $table = $this->table('chat_members', ['id' => false, 'primary_key' => ['chat_id', 'user_id']]);
+
+        $table
             ->addColumn('chat_id', 'integer')
             ->addColumn('user_id', 'integer')
             ->addColumn('joined_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
-            ->addPrimaryKey(['chat_id', 'user_id'])
-            ->addForeignKey('chat_id', 'chats', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
-            ->addForeignKey('user_id', 'users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->addForeignKey('chat_id', 'chats', 'id', ['delete' => 'CASCADE'])
+            ->addForeignKey('user_id', 'users', 'id', ['delete' => 'CASCADE'])
             ->create();
+    }
+
+
+    public function down(): void
+    {
+        $this->table('chat_members')->drop()->save();
     }
 }

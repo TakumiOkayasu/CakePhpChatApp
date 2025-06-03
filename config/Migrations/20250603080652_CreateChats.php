@@ -12,7 +12,7 @@ class CreateChats extends BaseMigration
      * https://book.cakephp.org/migrations/4/en/migrations.html#the-change-method
      * @return void
      */
-    public function up(): void
+    public function change(): void
     {
         // chats テーブル
         $this->table('chats')
@@ -20,5 +20,10 @@ class CreateChats extends BaseMigration
             ->addColumn('is_group', 'boolean', ['default' => false])
             ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->create();
+    }
+
+    public function down(): void
+    {
+        $this->table('chats')->drop()->save();
     }
 }
