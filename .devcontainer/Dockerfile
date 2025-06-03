@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-bullseye
+FROM php:8.4-apache
 
 ARG USER_NAME ${USER_NAME}
 ARG USER_UID  ${USER_UID}
