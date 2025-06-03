@@ -10,8 +10,11 @@ services:
     command: sleep infinity
     networks:
       - db-common-network
+    ports:
+      - "8765:8765"
     env_file:
       - ./.env
 
 networks:
   db-common-network:
+    external: true

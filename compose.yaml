@@ -26,3 +26,5 @@ volumes:
 
 networks:
   db-common-network:
+    external: true
+ 

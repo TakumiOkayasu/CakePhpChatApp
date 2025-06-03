@@ -6,7 +6,9 @@
 	"mounts": [
 		"source=${localWorkspaceFolder}/,target=/workspace,type=bind"
 	],
-	"initializeCommand": "if ! docker network ls | awk '{ print $2 }' | grep -qx 'db-common-network'; then docker network create --driver bridge db-common-network; fi",
+	"forwardPorts": [
+		8765
+	],
 	"customizations": {
 		"vscode": {
 			"extensions": [
