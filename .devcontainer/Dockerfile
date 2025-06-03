@@ -29,7 +29,8 @@ RUN apt update && apt upgrade -y && apt install -y --no-install-recommends \
     && docker-php-ext-install intl \ 
     && docker-php-ext-install pdo_mysql
 
-    RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+# composer install
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php \
     && php -r "unlink('composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer \
@@ -37,6 +38,7 @@ RUN apt update && apt upgrade -y && apt install -y --no-install-recommends \
 
 WORKDIR /tmp/scripts/
 
+# terminal config
 RUN curl -o ./create_user.sh https://raw.githubusercontent.com/TakumiOkayasu/shellscript_utility/refs/heads/main/create_user.sh \
     && curl -o ./terminal_config.sh https://raw.githubusercontent.com/TakumiOkayasu/shellscript_utility/refs/heads/main/terminal_config.sh \
     && chmod 777 ./*.sh \
