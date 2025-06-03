@@ -11,12 +11,18 @@ services:
       - MYSQL_ROOT_PASSWORD=password
       - TZ=Asia/Tokyo
     volumes:
-      - db-data:/var/lib/mysql
+      - chat-db-data:/var/lib/mysql
     command: mysqld --collation-server=utf8mb4_0900_bin --transaction-isolation=READ-COMMITTED
+    networks:
+      - db-common-network
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s
       retries: 1
 
 volumes:
-  db-data:
+  chat-db-data:
+
+
+networks:
+  db-common-network:
