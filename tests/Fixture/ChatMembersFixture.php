@@ -21,7 +21,7 @@ class ChatMembersFixture extends TestFixture
             [
                 'chat_id' => 1,
                 'user_id' => 1,
-                'joined_at' => 1748944006,
+                'joined_at' => 1749003340,
             ],
         ];
         parent::init();

@@ -22,7 +22,7 @@ class ChatsFixture extends TestFixture
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
                 'is_group' => 1,
-                'created_at' => 1748944230,
+                'created_at' => 1748944364,
             ],
         ];
         parent::init();
